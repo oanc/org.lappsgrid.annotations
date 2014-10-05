@@ -45,6 +45,8 @@ public abstract class ParentClass implements WebService { ... }
 )
 public class ServiceClass extends ParentClass { ... }
 ```
+Note that you can use a discriminators short name as defined in
+http://vocab.lappsgrid.org/discriminators.html
 
 ## Generated Files
 
