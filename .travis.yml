@@ -1,0 +1,11 @@
+language: java
+branches:
+    only:
+        - develop
+        - master
+before_install:
+    - cd ~/
+    - curl -O http://www.anc.org/tools/settings.xml
+install: true
+script:
+    - mvn clean test --settings ~/settings.xml
