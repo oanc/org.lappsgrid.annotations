@@ -79,3 +79,25 @@ The generated JSON files will be created in `src/main/resources/metadata` and wi
 the fully qualified class name of the service class. For example, if the above `SeviceClass`
 is in the `org.anc.examples` package the name of the generated metadata file will be
 `org.anc.examples.ServiceClass.json`.
+
+## Tips and Troubleshooting
+
+### Cleaning up
+
+Since the metadata files are automatically generated during the `compile`
+ phase it makes sense to delete them during the `clean` phase. To do this 
+ we need to configure the `maven-clean-plugin` to delete the `metadata`
+ directory.
+ 
+```xml
+    <plugin>
+        <artifactId>maven-clean-plugin</artifactId>
+        <configuration>
+            <filesets>
+                <fileset>
+                    <directory>src/main/resources/metadata</directory>
+                </fileset>
+            </filesets>
+        </configuration>
+    </plugin>
+```
