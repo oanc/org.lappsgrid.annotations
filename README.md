@@ -72,11 +72,6 @@ LAPPS annotation processor.
         <artifactId>annotations</artifactId>
         <version>${lapps.annotation.version}</version>
     </dependency>
-    <dependency>
-        <groupId>org.lappsgrid.experimental</groupId>
-        <artifactId>annotation-processor</artifactId>
-        <version>${lapps.annotation.version}</version>
-    </dependency>
 </dependencies>
 ```
 
