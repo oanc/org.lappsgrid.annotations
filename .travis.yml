@@ -4,8 +4,8 @@ branches:
         - develop
         - master
 before_install:
-    - cd ~/
+    - pushd ~/
     - curl -O http://www.anc.org/tools/settings.xml
-install: true
+    - popd
 script:
     - mvn clean test --settings ~/settings.xml
