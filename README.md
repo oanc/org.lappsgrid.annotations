@@ -1,6 +1,12 @@
 org.lappsgrid.annotations
 =========================
 
+### Build Status
+
+[![Master Status](http://grid.anc.org:9080/travis/svg/oanc/org.lappsgrid.annotations?branch=master)](https://travis-ci.org/oanc/org.lappsgrid.annotations)
+[![Develop Status](http://grid.anc.org:9080/travis/svg/oanc/org.lappsgrid.annotations?branch=develop)](https://travis-ci.org/oanc/org.lappsgrid.annotations)
+
+
 Java annotations that can be applied to services to automatically generate JSON metadata files.
 
 <b color='red'>Note:</b> currently these classes reside in the package 
@@ -12,7 +18,7 @@ moved into the `org.lappsgrid.annotations` package after review.
 ```xml
 <groupId>org.lappsgrid.experimental</groupId>
 <artifactId>annotations</artifactId>
-<version>1.0.0-SNAPSHOT</version>
+<version>1.0.0</version>
 ```
 
 ## Annotations
