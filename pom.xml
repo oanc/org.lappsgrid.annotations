@@ -10,15 +10,14 @@
     </parent>
     <groupId>org.lappsgrid.experimental</groupId>
     <artifactId>annotations</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1-SNAPSHOT</version>
     <name>LAPPS Annotations</name>
     <description>Java Annotations used in source code.</description>
     <inceptionYear>2014</inceptionYear>
     <properties>
         <jackson.version>2.3.1</jackson.version>
         <lapps.metadata.version>1.0.0</lapps.metadata.version>
-        <lapps.serialization.version>2.0.0</lapps.serialization.version>
-        <lapps.discriminator.version>2.0.0</lapps.discriminator.version>
+        <lapps.discriminator.version>2.0.1</lapps.discriminator.version>
         <anc.common.version>3.5.0</anc.common.version>
     </properties>
     <build>
