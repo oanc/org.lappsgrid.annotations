@@ -9,28 +9,24 @@ org.lappsgrid.annotations
 
 Java annotations that can be applied to services to automatically generate JSON metadata files.
 
-<b color='red'>Note:</b> currently these classes reside in the package 
-`org.lappsgrid.experimental.annotations`. They will be
-moved into the `org.lappsgrid.annotations` package after review.
-
 ## Maven
 
 ```xml
-<groupId>org.lappsgrid.experimental</groupId>
+<groupId>org.lappsgrid</groupId>
 <artifactId>annotations</artifactId>
-<version>1.0.0</version>
+<version>1.0.1</version>
 ```
 
 ## Annotations
 
 There are three annotation types that can be used to generate JSON metadata.
 
-1. **org.lappsgrid.experimental.annotations.CommonMetadata**<br/>
+1. **org.lappsgrid.annotations.CommonMetadata**<br/>
 Use this on super classes to provide common metadata for all sub-classes. This annotation
 only works in conjunction with the `@ServiceMetadata` annotation.
-1. **org.lappsgrid.experimental.annotations.ServiceMetadata**<br/>
+1. **org.lappsgrid.annotations.ServiceMetadata**<br/>
 Used to declare metadata for `org.lappsgrid.api.WebService` objects.
-1. **org.lappsgrid.experimental.annotations.DataSourceMetadata**<br/>
+1. **org.lappsgrid.annotations.DataSourceMetadata**<br/>
 Used to declare metadata for `org.lappsgrid.api.DataSource` objects.
 
 ## Examples
@@ -66,7 +62,7 @@ LAPPS annotation processor.
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
             <annotationProcessors>
-                <annotationProcessor>org.lappsgrid.experimental.annotation.processing.MetadataProcessor</annotationProcessor>
+                <annotationProcessor>org.lappsgrid.annotation.processing.MetadataProcessor</annotationProcessor>
             </annotationProcessors>
         </configuration>
     </plugin>
@@ -74,9 +70,9 @@ LAPPS annotation processor.
 </plugins>
 <dependencies>
     <dependency>
-        <groupId>org.lappsgrid.experimental</groupId>
+        <groupId>org.lappsgrid</groupId>
         <artifactId>annotations</artifactId>
-        <version>${lapps.annotation.version}</version>
+        <version>1.0.1</version>
     </dependency>
 </dependencies>
 ```
