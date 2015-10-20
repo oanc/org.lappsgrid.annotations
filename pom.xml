@@ -16,7 +16,7 @@
     <inceptionYear>2014</inceptionYear>
     <properties>
         <jackson.version>2.3.1</jackson.version>
-        <lapps.metadata.version>1.0.3</lapps.metadata.version>
+        <lapps.metadata.version>1.0.4</lapps.metadata.version>
         <lapps.discriminator.version>2.0.2</lapps.discriminator.version>
     </properties>
     <build>
