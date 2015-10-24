@@ -12,9 +12,11 @@ Java annotations that can be applied to services to automatically generate JSON 
 ## Maven
 
 ```xml
-<groupId>org.lappsgrid</groupId>
-<artifactId>annotations</artifactId>
-<version>1.0.1</version>
+<dependency>
+    <groupId>org.lappsgrid</groupId>
+    <artifactId>annotations</artifactId>
+    <version>1.0.2</version>
+</dependency>
 ```
 
 ## Annotations
