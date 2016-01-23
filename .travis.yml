@@ -1,11 +1,19 @@
 language: java
 branches:
-    only:
-        - develop
-        - master
+  only:
+  - develop
+  - master
+env:
+  global:
+  - secure: NcRYPIIYr6v660MM/1vQnH3vbeoUzOdcI+uTsre2gAquLge093fPSQjrekGksTt0IkHYUPusQ/dVnXTJkYZ61dBOGmkqcA2S9lvSF9LbWJXz8J1zV2bn8Nrcv2OQE8MzjPXRfxtt6iS1InL1ook20ihJixgFj3z9VkEK+23dWMw=
+  - secure: U45HrklyakHBUy5XchMER8zb00zEUo0Us6ha32uRQUJP6X5z9tJ6e+TtppksQ+iSIuqPtniVJkV+JI31oUNwMrXVJqgTP7CaH14KOSFwLIGuQ6IW18XJpyPY9y3KPPaWj7E4oiHtlmBBg1tecTFqXrmxagPSufLZFE+P3uLKVJY=
+  - secure: AjeVH+ivDvNL9+cUpRZ3WI3rRj//uTKxrl8suOoPGkm98sHQYC9IzKk1g14Cb7eEtxlxnvXBV7soX4HVDbkbayLs7o5pVAmL4hoWWu5mMzmRE0w8BnxIMUhqGyM5bT1PgUCGG5f6MlLGRYjwHFMyzGpRqxhxPUhv/CsnuTSCPeI=
+  - secure: GmyY+Yx9rf/7iBeU+caVRY4u8Q8CDEzIkrgNrVYO+GIZaxf7mBX13KfAXD486u9AC4bNzFT7gCq5c0s7kuB3uy7Df2UD9uWwxDUgKDGkiAx9pme26DDiB+8pagU1SA5IYmhqw3byoJNfvlOEW7dLraM2cqGIQKqJRda7OiXBJxc=
+  - secure: iy+eLRENuO0mmX3TzAwfiI+AZ11uKUh/SVRKxIay9iVS6LVgyanseXIqPhZM8zIMmV/wLhtySHV9md59hTikzMqjuUdhh1edwEEF1UzRLGKqGGkekUFM0OqfNA2JzgR9qOCfATjX/3So27QXSApMvOFpHiisC7y0b8U0rjWBej4=
+  - secure: AdbGqdQ2rlbCZmvmNkgo/k9JEOCRLhKc+qnLy+uhO3y6pXN8ajKdtItKz3gK9jhxMQHmd0B+a4rX+sU3O662iH/EY93RWhUC52PzrpPUa7MkM8C2iZNFjxeWVGSxgXq/aLsOPu+LjHHDAf9tAKlJrkUyjN2yRHsFDQXhSMFjfM0=
 before_install:
-    - curl -O http://www.anc.org/tools/settings.xml
-install: 
-    - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V --settings settings.xml
+- chmod a+x ./deploy.sh
 script:
-    - mvn clean test --settings settings.xml
+- mvn clean test --settings settings.xml
+after_success:
+- if [ "$TRAVIS_BRANCH" == "master" ] ; then ./deploy.sh ; fi
