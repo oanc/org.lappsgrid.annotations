@@ -385,9 +385,10 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 	{
 		org.lappsgrid.metadata.ServiceMetadata metadata = new org.lappsgrid.metadata.ServiceMetadata();
 		String name = combined.name();
-		if (name == null) {
+		if (name == null || name.length() == 0) {
 			name = className;
 		}
+		System.out.println("Service name is " + name);
 		metadata.setName(name);
 		metadata.setDescription(get(combined.description()));
 		metadata.setVendor(get(combined.vendor()));
