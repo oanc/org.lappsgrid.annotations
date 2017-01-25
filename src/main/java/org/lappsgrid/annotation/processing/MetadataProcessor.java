@@ -286,7 +286,7 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		}
 
 		File pom = new File("pom.xml");
-		if (!file.exists())
+		if (!pom.exists())
 		{
 			return "0.0.0.UNKNOWN";
 		}
