@@ -288,7 +288,7 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		File pom = new File("pom.xml");
 		if (!pom.exists())
 		{
-			return "0.0.0.UNKNOWN";
+			return "0.0.0.POM_NOT_FOUND";
 		}
 		debug("Attempting to get version from POM.");
 		XPath xpath = XPathFactory.newInstance().newXPath();
