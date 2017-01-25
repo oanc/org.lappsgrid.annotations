@@ -288,17 +288,16 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		File pom = new File("pom.xml");
 		if (!pom.exists())
 		{
-			return "0.0.0.POM_NOT_FOUND";
+			return "0.0.0.UNKNOWN";
 		}
 		debug("Attempting to get version from POM.");
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		xpath.setNamespaceContext(new MavenNamespaceContext());
 		String expression = "/maven:project/maven:version/text()";
-		String result = null;
 		try
 		{
 			XPathExpression xpr = xpath.compile(expression);
-			InputSource source = new InputSource(new FileReader("pom.xml"));
+			InputSource source = new InputSource(new FileReader(pom));
 			String s = xpr.evaluate(source);
 			debug("Version is " + s);
 			return s;
