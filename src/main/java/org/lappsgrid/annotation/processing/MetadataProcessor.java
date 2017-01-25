@@ -286,7 +286,7 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		}
 
 		File pom = new File("pom.xml");
-		if (!file.exists())
+		if (!pom.exists())
 		{
 			return "0.0.0.UNKNOWN";
 		}
@@ -294,11 +294,10 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		XPath xpath = XPathFactory.newInstance().newXPath();
 		xpath.setNamespaceContext(new MavenNamespaceContext());
 		String expression = "/maven:project/maven:version/text()";
-		String result = null;
 		try
 		{
 			XPathExpression xpr = xpath.compile(expression);
-			InputSource source = new InputSource(new FileReader("pom.xml"));
+			InputSource source = new InputSource(new FileReader(pom));
 			String s = xpr.evaluate(source);
 			debug("Version is " + s);
 			return s;

@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.lappsgrid</groupId>
     <artifactId>annotations</artifactId>
-    <version>1.1.0</version>
+    <version>1.1.1-SNAPSHOT</version>
     <name>LAPPS Annotations</name>
     <description>Java Annotations used in source code.</description>
     <inceptionYear>2014</inceptionYear>
@@ -36,8 +36,8 @@
     </ciManagement>
     <properties>
         <jackson.version>2.3.1</jackson.version>
-        <lapps.metadata.version>1.1.0</lapps.metadata.version>
-        <lapps.discriminator.version>2.2.1</lapps.discriminator.version>
+        <lapps.metadata.version>1.1.1-SNAPSHOT</lapps.metadata.version>
+        <lapps.discriminator.version>2.3.1-SNAPSHOT</lapps.discriminator.version>
     </properties>
     <build>
         <plugins>

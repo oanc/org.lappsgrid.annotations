@@ -59,7 +59,8 @@ public class AnnotationTests extends CompilerBase
 		compile(source);
 		ServiceMetadata metadata = getMetadata();
 		assertEquals("test.Empty", metadata.getName());
-		assertEquals("0.0.0.UNKNOWN", metadata.getVersion());
+		assertFalse("0.0.0.UNKNOWN".equals(metadata.getVersion()));
+//		assertEquals("0.0.0.UNKNOWN", metadata.getVersion());
 		assertEquals(Uri.ANY, metadata.getAllow());
 	}
 
