@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.lappsgrid</groupId>
     <artifactId>annotations</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.1</version>
     <name>LAPPS Annotations</name>
     <description>Java Annotations used in source code.</description>
     <inceptionYear>2014</inceptionYear>
