@@ -36,8 +36,8 @@
     </ciManagement>
     <properties>
         <jackson.version>2.3.1</jackson.version>
-        <lapps.metadata.version>1.1.1-SNAPSHOT</lapps.metadata.version>
-        <lapps.discriminator.version>2.3.1-SNAPSHOT</lapps.discriminator.version>
+        <lapps.metadata.version>1.1.1</lapps.metadata.version>
+        <lapps.discriminator.version>2.3.1</lapps.discriminator.version>
     </properties>
     <build>
         <plugins>
@@ -64,27 +64,6 @@
                     </filesets>
                 </configuration>
             </plugin>
-            <!--
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
