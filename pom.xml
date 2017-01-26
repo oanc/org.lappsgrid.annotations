@@ -37,7 +37,7 @@
     <properties>
         <jackson.version>2.3.1</jackson.version>
         <lapps.metadata.version>1.1.1-SNAPSHOT</lapps.metadata.version>
-        <lapps.discriminator.version>2.3.1-SNAPSHOT</lapps.discriminator.version>
+        <lapps.discriminator.version>2.3.1</lapps.discriminator.version>
     </properties>
     <build>
         <plugins>
