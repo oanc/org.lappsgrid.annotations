@@ -64,12 +64,11 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 	private void log(String message)
 	{
 		System.out.println(message);
-//		processingEnv.getMessager().printMessage(Diagnostic.Kind.NOTE, message);
 	}
 
 	private void debug(String message)
 	{
-		System.out.println(message);
+//		System.out.println(message);
 	}
 
 	private String toString(String[] list)
