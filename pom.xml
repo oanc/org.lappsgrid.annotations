@@ -10,7 +10,7 @@
     </parent>
     <groupId>org.lappsgrid</groupId>
     <artifactId>annotations</artifactId>
-    <version>1.1.1-SNAPSHOT</version>
+    <version>1.1.1</version>
     <name>LAPPS Annotations</name>
     <description>Java Annotations used in source code.</description>
     <inceptionYear>2014</inceptionYear>
@@ -36,7 +36,7 @@
     </ciManagement>
     <properties>
         <jackson.version>2.3.1</jackson.version>
-        <lapps.metadata.version>1.1.1-SNAPSHOT</lapps.metadata.version>
+        <lapps.metadata.version>1.1.1</lapps.metadata.version>
         <lapps.discriminator.version>2.3.1</lapps.discriminator.version>
     </properties>
     <build>
@@ -64,27 +64,6 @@
                     </filesets>
                 </configuration>
             </plugin>
-            <!--
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.4</version>
-                <executions>
-                    <execution>
-                        <id>assembly</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <appendAssemblyId>false</appendAssemblyId>
-                            <descriptorRefs>
-                                <descriptorRef>jar-with-dependencies</descriptorRef>
-                            </descriptorRefs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
