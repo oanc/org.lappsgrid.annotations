@@ -69,6 +69,12 @@
                 <artifactId>maven-site-plugin</artifactId>
                 <version>3.4</version>
             </plugin>
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
     <dependencies>
@@ -88,4 +94,15 @@
             <version>${lapps.discriminator.version}</version>
         </dependency>
     </dependencies>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <configuration>
+                    <additionalparam>-Xdoclint:none</additionalparam>
+                </configuration>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
