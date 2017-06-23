@@ -6,6 +6,7 @@ org.lappsgrid.annotations
 [![Master Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.annotations?branch=master)](https://travis-ci.org/lapps/org.lappsgrid.annotations)
 [![Develop Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.annotations?branch=develop)](https://travis-ci.org/lapps/org.lappsgrid.annotations)
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/annotations/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/annotations)
 
 Java annotations that can be applied to services to automatically generate JSON metadata files.
 
