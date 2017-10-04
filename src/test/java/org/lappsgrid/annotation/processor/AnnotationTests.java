@@ -61,7 +61,7 @@ public class AnnotationTests extends CompilerBase
 		assertEquals("test.Empty", metadata.getName());
 		assertFalse("0.0.0.UNKNOWN".equals(metadata.getVersion()));
 //		assertEquals("0.0.0.UNKNOWN", metadata.getVersion());
-		assertEquals(Uri.ANY, metadata.getAllow());
+		assertEquals(Uri.ALL, metadata.getAllow());
 	}
 
 	@Test
