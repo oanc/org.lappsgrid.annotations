@@ -1,22 +1,23 @@
 org.lappsgrid.annotations
 =========================
 
+Java annotations that can be applied to services to automatically generate JSON metadata files.
+
+
 ### Build Status
 
 [![Master Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.annotations?branch=master)](https://travis-ci.org/lapps/org.lappsgrid.annotations)
 [![Develop Status](http://grid.anc.org:9080/travis/svg/lapps/org.lappsgrid.annotations?branch=develop)](https://travis-ci.org/lapps/org.lappsgrid.annotations)
 
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/annotations/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/annotations)
-
-Java annotations that can be applied to services to automatically generate JSON metadata files.
-
 ## Maven
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/annotations/badge.svg?style=plastic)](https://maven-badges.herokuapp.com/maven-central/org.lappsgrid/annotations)
 
 ```xml
 <dependency>
     <groupId>org.lappsgrid</groupId>
     <artifactId>annotations</artifactId>
-    <version>1.0.3</version>
+    <version>1.1.0</version>
 </dependency>
 ```
 
