@@ -129,4 +129,32 @@ public class AnnotationTests extends CompilerBase
 		assertEquals("anc", metadata.getVendor());
 		assertEquals(Uri.APACHE2, metadata.getLicense());
 	}
+
+	@Test
+	public void testLicenseDesc() throws IOException
+	{
+		String license = "Apache 2.0";
+		String source = "package test;\n" +
+				"import org.lappsgrid.annotations.ServiceMetadata;\n" +
+				"@ServiceMetadata(license=\"" + license +"\")\n" +
+				"class Empty { }\n";
+		compile(source);
+		ServiceMetadata metadata = getMetadata();
+		assertNotNull(metadata);
+		assertEquals(license, metadata.getLicense());
+	}
+
+	@Test
+	public void testTagSets() throws IOException
+	{
+		String desc = "description";
+		String source = "package test;\n" +
+				"import org.lappsgrid.annotations.ServiceMetadata;\n" +
+				"@ServiceMetadata(licenseDesc=\"" + desc +"\")\n" +
+				"class Empty { }\n";
+		compile(source);
+		ServiceMetadata metadata = getMetadata();
+		assertNotNull(metadata);
+		assertEquals(desc, metadata.get);
+	}
 }
