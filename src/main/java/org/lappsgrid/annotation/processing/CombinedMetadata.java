@@ -107,10 +107,8 @@ public class CombinedMetadata
    {
       if (hasValue(service.license()))
       {
-//			System.out.println("Service has a value for license: " + service.license());
 			return service.license();
       }
-//		System.out.println("Using common's license: " + common.license());
 		if (common == null)
 		{
 			return null;

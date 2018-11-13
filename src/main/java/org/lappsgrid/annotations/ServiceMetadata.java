@@ -91,9 +91,14 @@ public @interface ServiceMetadata
 	String allow() default "any";
 
 	/**
-	 * The software license for the service.
+	 * URL to the software license for the service.
 	 */
 	String license() default "";
+
+	/**
+	 * A human readable version of the license.  May include Markdown.
+	 */
+	String licenseDesc() default "";
 
 	/**
 	 * Set <i>encoding</i> when the service requires and produces the

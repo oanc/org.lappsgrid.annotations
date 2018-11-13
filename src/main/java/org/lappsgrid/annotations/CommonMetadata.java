@@ -92,9 +92,14 @@ public @interface CommonMetadata
 	String allow() default "any";
 
 	/**
-	 * The software license for the service.
+	 * URL to the software license for the service.
 	 */
 	String license() default "";
+
+	/**
+	 * Human readable version of the license.
+	 */
+	String licenseDesc() default "";
 
 	/**
 	 * Set <i>encoding</i> when the service requires and produces the
