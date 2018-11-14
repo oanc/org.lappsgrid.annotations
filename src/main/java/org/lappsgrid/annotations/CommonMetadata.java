@@ -162,4 +162,9 @@ public @interface CommonMetadata
 	 * The annotation types produces by this service.
 	 */
 	String[] produces() default {};
+
+	String[] tagsets() default {};
+	String[] requires_tagsets() default {};
+	String[] produces_tagsets() default {};
+
 }

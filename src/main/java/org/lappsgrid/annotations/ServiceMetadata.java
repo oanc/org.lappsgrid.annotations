@@ -152,6 +152,10 @@ public @interface ServiceMetadata
 	 */
 	String[] produces_format() default {};
 
+	String[] tagsets() default {};
+	String[] requires_tagsets() default {};
+	String[] produces_tagsets() default {};
+
 	/**
 	 * The annotation types required by this service.
 	 */

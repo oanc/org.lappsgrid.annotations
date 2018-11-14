@@ -89,7 +89,11 @@ public class CompilerBase
 
 	public ServiceMetadata getMetadata() throws IOException
 	{
-		File file = new File("src/main/resources/metadata/test.Empty.json");
+		return getMetadata("src/main/resources/metadata/test.Empty.json");
+	}
+
+	public ServiceMetadata getMetadata(String path) throws IOException {
+		File file = new File(path);
 		if (!file.exists())
 		{
 			throw new IOException("Unable to locate metadata file at " + file.getPath());

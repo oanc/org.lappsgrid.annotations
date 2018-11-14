@@ -16,6 +16,7 @@
  */
 package org.lappsgrid.annotation.processing;
 
+import org.lappsgrid.annotations.TagSet;
 import org.lappsgrid.discriminator.Discriminator;
 import org.lappsgrid.discriminator.DiscriminatorRegistry;
 import org.lappsgrid.annotations.CommonMetadata;
@@ -51,7 +52,7 @@ import java.util.*;
 //		  "org.lappsgrid.experimental.annotations.DataSourceMetadata"})
 @SupportedAnnotationTypes({"org.lappsgrid.annotations.ServiceMetadata",
 		  "org.lappsgrid.annotations.DataSourceMetadata"})
-@SupportedSourceVersion(SourceVersion.RELEASE_7)
+@SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class MetadataProcessor extends AbstractProcessor implements Processor
 {
 //   private Properties defaults = new Properties();
@@ -392,12 +393,11 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		metadata.setVendor(get(combined.vendor()));
 		metadata.setLicense(getValue(combined.license()));
 		metadata.setAllow(getValue(combined.allow()));
-//      log("Attempting to get version");
 		metadata.setVersion(getVersion(combined.version()));
 
+		// Populate the required IOSpecification
 		IOSpecification requires = metadata.getRequires();
 		log("Setting format");
-//      List<String> formats = makeList(contentTypeFactory, combined.inputFormat());
 		List<String> formats = makeList(combined.inputFormat());
 		debug("Combined formats.");
 		for (String type : formats)
@@ -415,57 +415,57 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		String encoding = combined.inputEncoding();
 		if (encoding != null && encoding.length() > 0)
 		{
-//         log("Setting encoding to " + encoding);
 			requires.setEncoding(encoding);
 		}
 
-//      log("Setting languages");
-      List<String> languages = makeList(combined.inputLanguage());
+		String[] tagsets = combined.inputTagSets();
+		if (tagsets != null && tagsets.length > 0) {
+			List<String> list = Arrays.asList(combined.inputTagSets());
+			for (String tagset :list) {
+				String[] parts = tagset.split("\\s+");
+				if (parts.length == 2) {
+					requires.addTagSet(parts[0], parts[1]);
+				}
+				else {
+					throw new IOException("Invalid tagset specification " + tagset);
+				}
+			}
+		}
+      	List<String> languages = makeList(combined.inputLanguage());
 		requires.getLanguage().addAll(languages);
 
-//      log("Setting annotation types");
-//      List<AnnotationType> types = makeList(annotationTypeFactory, combined.requires());
 		List<String> annotations = requires.getAnnotations();
 		List<String> types = makeList(combined.requires());
 		annotations.addAll(types);
-//		for (String type : combined.requires())
-//		{
-//			annotations.add(new AnnotationType(type));
-//		}
-//		requires.getAnnotations().addAll(annotations);
-//      addList(types, requires);
 
 		// Populate the produces IOSpecification
 		IOSpecification produces = metadata.getProduces();
-//      log("Setting formats.");
-//      formats = makeList(contentTypeFactory, combined.outputFormat());
-//      addList(formats, produces);
 		formats = makeList(combined.outputFormat());
 		produces.getFormat().addAll(formats);
 
 		encoding = combined.outputEncoding();
-//      if (combined.outputEncoding().length() > 0)
-//      {
-////         log("Using outEncoding");
-//         encoding = combined.outputEncoding();
-//      }
 		if (encoding != null && encoding.length() > 0)
 		{
-//         log("Setting encoding to " + encoding);
 			produces.setEncoding(encoding);
 		}
+		tagsets = combined.outputTagSets();
+		if (tagsets != null && tagsets.length > 0) {
+			List<String> list = Arrays.asList(combined.outputTagSets());
+			for (String tagset :list) {
+				String[] parts = tagset.split("\\s+");
+				if (parts.length == 2) {
+					produces.addTagSet(parts[0], parts[1]);
+				}
+				else {
+					throw new IOException("Invalid tagset specification: " + tagset);
+				}
+			}
+		}
 
-//      log("Setting languages");
-//      languages = makeList(stringFactory, combined.outputLanguage());
-//      addList(languages, produces);
 		languages = makeList(combined.outputLanguage());
 		produces.getLanguage().addAll(languages);
 
-//      log("Setting types");
-//      types = makeList(annotationTypeFactory, combined.produces());
-//      addList(types, produces);
 		types = makeList(combined.produces());
-//		produces.getAnnotations().addAll(types);
 		annotations = produces.getAnnotations();
 		annotations.addAll(types);
 
@@ -511,16 +511,20 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 //		}
 //	}
 
-	private List<String> makeList(String[] array)
+	private <T> List<T> makeList(T[] array)
 	{
-		List<String> list = new ArrayList<String>();
-		if (array != null) {
-			//list.addAll(Arrays.asList(array));
-			for (String name : array) {
-				list.add(getUri(name));
-			}
+		if (array == null || array.length == 0) {
+			return new ArrayList<>();
 		}
-		return list;
+		return Arrays.asList(array);
+//		List<String> list = new ArrayList<String>();
+//		if (array != null) {
+//			//list.addAll(Arrays.asList(array));
+//			for (String name : array) {
+//				list.add(getUri(name));
+//			}
+//		}
+//		return list;
 	}
 
 	private String getUri(String name)

@@ -5,10 +5,16 @@ import static org.junit.Assert.*;
 
 import static org.lappsgrid.discriminator.Discriminators.Uri;
 import org.lappsgrid.metadata.ServiceMetadata;
+import org.lappsgrid.serialization.Serializer;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 /**
  * @author Keith Suderman
@@ -131,7 +137,7 @@ public class AnnotationTests extends CompilerBase
 	}
 
 	@Test
-	public void testLicenseDesc() throws IOException
+	public void testLicense() throws IOException
 	{
 		String license = "Apache 2.0";
 		String source = "package test;\n" +
@@ -145,16 +151,55 @@ public class AnnotationTests extends CompilerBase
 	}
 
 	@Test
-	public void testTagSets() throws IOException
+	public void testLicenseDesc() throws IOException
 	{
 		String desc = "description";
 		String source = "package test;\n" +
 				"import org.lappsgrid.annotations.ServiceMetadata;\n" +
-				"@ServiceMetadata(licenseDesc=\"" + desc +"\")\n" +
+				"@ServiceMetadata(license=\"" + desc +"\")\n" +
 				"class Empty { }\n";
 		compile(source);
 		ServiceMetadata metadata = getMetadata();
 		assertNotNull(metadata);
-		assertEquals(desc, metadata.get);
+		assertEquals(desc, metadata.getLicenseDesc());
+	}
+
+	@Test
+	public void testTagSets() throws IOException
+	{
+		String source = read(this.getClass().getResourceAsStream("/TagSets.java"));
+		compile(source);
+		ServiceMetadata metadata = getMetadata("src/main/resources/metadata/TagSets.json");
+		assertNotNull(metadata);
+		Map<String,String> tagsets = metadata.getRequires().getTagSets();
+		assertEquals(1, tagsets.size());
+		assertEquals(Uri.TAGS_POS_PENNTB, tagsets.get(Uri.POS));
+
+		tagsets = metadata.getProduces().getTagSets();
+		assertEquals(2, tagsets.size());
+		assertEquals(Uri.TAGS_NER_STANFORD, tagsets.get(Uri.NE));
+	}
+
+	@Test
+	public void testMadeUpTags() throws IOException
+	{
+		String source = read(this.getClass().getResourceAsStream("/MadeUpTags.java"));
+		compile(source);
+		ServiceMetadata metadata = getMetadata("src/main/resources/metadata/MadeUpTags.json");
+		assertNotNull(metadata);
+		Map<String,String> tagsets = metadata.getRequires().getTagSets();
+		assertEquals(1, tagsets.size());
+
+		String expectedKey = Uri.TOKEN + "#foo";
+		String expectedValue = Uri.TAGS_POS + "#bar";
+
+		assertNotNull(tagsets.get(expectedKey));
+		assertEquals(expectedValue, tagsets.get(expectedKey));
+	}
+
+	public static String read(InputStream input) throws IOException {
+		try (BufferedReader buffer = new BufferedReader(new InputStreamReader(input))) {
+			return buffer.lines().collect(Collectors.joining("\n"));
+		}
 	}
 }
