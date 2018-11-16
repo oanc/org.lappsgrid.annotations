@@ -105,6 +105,7 @@
             </plugin>
         </plugins>
     </reporting>
+    <!--
     <repositories>
         <repository>
             <id>sonatype-releases</id>
@@ -113,4 +114,5 @@
             <snapshots><enabled>false</enabled></snapshots>
         </repository>
     </repositories>
+    -->
 </project>
