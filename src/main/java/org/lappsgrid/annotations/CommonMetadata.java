@@ -82,6 +82,12 @@ public @interface CommonMetadata
 	String version() default "";
 
 	/**
+	 * The version of the tool being wrapped, if any.  Not all LAPPS Grid
+	 * services are wrappers around other NLP tools so this field is optional.
+	 */
+	String toolVersion() default "";
+
+	/**
 	 * The URI of the organization providing the service.
 	 */
 	String vendor() default "";
@@ -92,9 +98,14 @@ public @interface CommonMetadata
 	String allow() default "any";
 
 	/**
-	 * The software license for the service.
+	 * URL to the software license for the service.
 	 */
 	String license() default "";
+
+	/**
+	 * Human readable version of the license.
+	 */
+	String licenseDesc() default "";
 
 	/**
 	 * Set <i>encoding</i> when the service requires and produces the
@@ -157,4 +168,9 @@ public @interface CommonMetadata
 	 * The annotation types produces by this service.
 	 */
 	String[] produces() default {};
+
+	String[] tagsets() default {};
+	String[] requires_tagsets() default {};
+	String[] produces_tagsets() default {};
+
 }
