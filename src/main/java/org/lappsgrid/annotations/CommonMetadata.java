@@ -82,6 +82,12 @@ public @interface CommonMetadata
 	String version() default "";
 
 	/**
+	 * The version of the tool being wrapped, if any.  Not all LAPPS Grid
+	 * services are wrappers around other NLP tools so this field is optional.
+	 */
+	String toolVersion() default "";
+
+	/**
 	 * The URI of the organization providing the service.
 	 */
 	String vendor() default "";

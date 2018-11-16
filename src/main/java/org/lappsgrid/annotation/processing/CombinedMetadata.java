@@ -18,7 +18,6 @@ package org.lappsgrid.annotation.processing;
 
 import org.lappsgrid.annotations.CommonMetadata;
 import org.lappsgrid.annotations.ServiceMetadata;
-import org.lappsgrid.annotations.TagSet;
 
 /**
  * Combines the information from CommonMetadata and ServiceMetadata annotations
@@ -84,6 +83,17 @@ public class CombinedMetadata
 			return null;
 		}
 		return common.version();
+	}
+
+	public String toolVersion()
+	{
+		if (hasValue(service.toolVersion())) {
+			return service.toolVersion();
+		}
+		if (common == null) {
+			return null;
+		}
+		return common.toolVersion();
 	}
 
 	public String vendor()
