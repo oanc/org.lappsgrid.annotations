@@ -105,4 +105,12 @@
             </plugin>
         </plugins>
     </reporting>
+    <repositories>
+        <repository>
+            <id>sonatype-releases</id>
+            <url>https://oss.sonatype.org/content/repositories/releases/</url>
+            <releases><enabled>true</enabled></releases>
+            <snapshots><enabled>false</enabled></snapshots>
+        </repository>
+    </repositories>
 </project>
