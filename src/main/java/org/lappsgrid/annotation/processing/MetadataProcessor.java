@@ -16,7 +16,6 @@
  */
 package org.lappsgrid.annotation.processing;
 
-import org.lappsgrid.annotations.TagSet;
 import org.lappsgrid.discriminator.Discriminator;
 import org.lappsgrid.discriminator.DiscriminatorRegistry;
 import org.lappsgrid.annotations.CommonMetadata;
@@ -394,6 +393,7 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		metadata.setLicense(getValue(combined.license()));
 		metadata.setAllow(getValue(combined.allow()));
 		metadata.setVersion(getVersion(combined.version()));
+		metadata.setToolVersion(getValue(combined.toolVersion()));
 
 		// Populate the required IOSpecification
 		IOSpecification requires = metadata.getRequires();

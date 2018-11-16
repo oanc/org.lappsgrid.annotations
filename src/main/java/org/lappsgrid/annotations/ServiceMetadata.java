@@ -81,6 +81,12 @@ public @interface ServiceMetadata
 	String version() default "";
 
 	/**
+	 * The version of the tool being wrapped, if any.  Not all LAPPS Grid
+	 * services are wrappers around other NLP tools so this field is optional.
+	 */
+	String toolVersion() default "";
+
+	/**
 	 * The URI of the organization providing the service.
 	 */
 	String vendor() default "";
@@ -152,6 +158,7 @@ public @interface ServiceMetadata
 	 */
 	String[] produces_format() default {};
 
+	// Tag sets required/produces by the service.
 	String[] tagsets() default {};
 	String[] requires_tagsets() default {};
 	String[] produces_tagsets() default {};
