@@ -391,6 +391,7 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		metadata.setDescription(get(combined.description()));
 		metadata.setVendor(get(combined.vendor()));
 		metadata.setLicense(getValue(combined.license()));
+		metadata.setLicenseDesc(getValue(combined.licenseDesc()));
 		metadata.setAllow(getValue(combined.allow()));
 		metadata.setVersion(getVersion(combined.version()));
 		metadata.setToolVersion(getValue(combined.toolVersion()));
