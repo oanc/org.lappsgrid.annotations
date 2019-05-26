@@ -5,15 +5,18 @@ branches:
   - master
 env:
   global:
-  - secure: NcRYPIIYr6v660MM/1vQnH3vbeoUzOdcI+uTsre2gAquLge093fPSQjrekGksTt0IkHYUPusQ/dVnXTJkYZ61dBOGmkqcA2S9lvSF9LbWJXz8J1zV2bn8Nrcv2OQE8MzjPXRfxtt6iS1InL1ook20ihJixgFj3z9VkEK+23dWMw=
-  - secure: U45HrklyakHBUy5XchMER8zb00zEUo0Us6ha32uRQUJP6X5z9tJ6e+TtppksQ+iSIuqPtniVJkV+JI31oUNwMrXVJqgTP7CaH14KOSFwLIGuQ6IW18XJpyPY9y3KPPaWj7E4oiHtlmBBg1tecTFqXrmxagPSufLZFE+P3uLKVJY=
-  - secure: AjeVH+ivDvNL9+cUpRZ3WI3rRj//uTKxrl8suOoPGkm98sHQYC9IzKk1g14Cb7eEtxlxnvXBV7soX4HVDbkbayLs7o5pVAmL4hoWWu5mMzmRE0w8BnxIMUhqGyM5bT1PgUCGG5f6MlLGRYjwHFMyzGpRqxhxPUhv/CsnuTSCPeI=
-  - secure: GmyY+Yx9rf/7iBeU+caVRY4u8Q8CDEzIkrgNrVYO+GIZaxf7mBX13KfAXD486u9AC4bNzFT7gCq5c0s7kuB3uy7Df2UD9uWwxDUgKDGkiAx9pme26DDiB+8pagU1SA5IYmhqw3byoJNfvlOEW7dLraM2cqGIQKqJRda7OiXBJxc=
-  - secure: iy+eLRENuO0mmX3TzAwfiI+AZ11uKUh/SVRKxIay9iVS6LVgyanseXIqPhZM8zIMmV/wLhtySHV9md59hTikzMqjuUdhh1edwEEF1UzRLGKqGGkekUFM0OqfNA2JzgR9qOCfATjX/3So27QXSApMvOFpHiisC7y0b8U0rjWBej4=
-  - secure: AdbGqdQ2rlbCZmvmNkgo/k9JEOCRLhKc+qnLy+uhO3y6pXN8ajKdtItKz3gK9jhxMQHmd0B+a4rX+sU3O662iH/EY93RWhUC52PzrpPUa7MkM8C2iZNFjxeWVGSxgXq/aLsOPu+LjHHDAf9tAKlJrkUyjN2yRHsFDQXhSMFjfM0=
+    - secure: HfZI1W6f5zgvtFfkayzhdj1/vE3EnuGuofOpeSeVDgkeSck0/q7XrS0TNVAog1A3hslldKzBRyqbUcMeDMfgcCtxVKw5ZrCyCGiVvMBT0bOSvjMnY2bWPMUQuzKJFO/N01fA/4Y+Tt2vW6JnRIVdc/Optkh4zAc/i+FoZA+J0oU=
+    - secure: DOUs1WBUrVFdhtiIp6rhWfFTjnWn2Q70gNlBO2U6RuPrMauGdvtlHH6WZqNnowbSi1ABKj0rrgOn5LkW727uXwY2OFia8zwNyKlzY3gy/PkdFCeKDai+yWpi9+MCSNLAh+s/orwRBs5BfVXkSvd1EftpZ2QgR7/yNYewJIpNz9w=
+    - secure: fAXZgb6PJ5hAGvcq/HCSu5ZCHCHHefTem49RZ0xK4RPlJq5jsv1c/V3CPL40FrXXSWzkq53rAMAebELx2Wb1KFk01iJZQs/sEnul4Om2nnhDLbtCucNeLsTlr3ngewQt3aggVxKGB0cd0V+Ju8Iha2Sbb9rpR6rDcG3srcutkEc=
+    - secure: dSxn+xLVq/AM3xWvV4w7VYfHWNuGDOlipI3GwTqLlryUIL/EB6inqQQQzYK/b6V7ihpRS5hsWeDX3tFSgX6tq7mX1D3nDTznA4v/KFFziTv2QPm840eISPFWyqVUXB/fIx7+kkyaqEjy6/BqxIwTyQCgjcrM/41i/68bYsHVOgE=
+    - secure: GUy10JFNYXT0xHtK3Jbdqtb8gI21AoHRGUgIi2O8xxu0r+LmG3CdONwanjQMyfOD7l8t2PIqtr49Gi0YeOmmzlFaWi4NSYnVDp1sXy/2h9nO20dqUnwU3t480l0YEiX5/iqTPHIpnpJX5M9+3cK2GY0cCqL/O9Xo5ncLBvjA83c=
+    - secure: PzYTdsse1ipmjI30xaxyu5/K5nwUelDBH6JzCnZqQ4tAXAbY3E5tnlKS9G14SbqGc0Wwjjt1eGllJn6SjyARASIYue4qTfVlL5IuWdSjp63ynEEazFs9RShGHbogN3y3AekunPRkZ96Z89SDEzU0c6uqsSOMuvCTGPtmpBLHOgA=
 before_install:
 - chmod a+x ./deploy.sh
+install:
+- mvn --settings settings.xml -Prelease -DskipTests=true -Dmaven.javadoc.skip=true
+  -B -V install
 script:
-- mvn clean test --settings settings.xml
+- mvn clean test --settings settings.xml -Prelease
 after_success:
 - if [ "$TRAVIS_BRANCH" == "master" ] ; then ./deploy.sh ; fi
