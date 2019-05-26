@@ -44,7 +44,7 @@ import java.util.Set;
 /**
  * @author Keith Suderman
  */
-@SupportedAnnotationTypes("org.lappsgrid.experimental.annotations.DataSourceMetadata")
+@SupportedAnnotationTypes("org.lappsgrid.annotations.DataSourceMetadata")
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class DataSourceMetadataProcessor //extends AbstractProcessor
 {

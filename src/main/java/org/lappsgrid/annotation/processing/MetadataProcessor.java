@@ -50,7 +50,8 @@ import java.util.*;
 //@SupportedAnnotationTypes({"org.lappsgrid.experimental.annotations.ServiceMetadata",
 //		  "org.lappsgrid.experimental.annotations.DataSourceMetadata"})
 @SupportedAnnotationTypes({"org.lappsgrid.annotations.ServiceMetadata",
-		  "org.lappsgrid.annotations.DataSourceMetadata"})
+		  "org.lappsgrid.annotations.DataSourceMetadata",
+		  "org.lappsgrid.annotations.CommonMetadata"})
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 public class MetadataProcessor extends AbstractProcessor implements Processor
 {
@@ -404,14 +405,15 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		for (String type : formats)
 		{
 			debug(type.toString());
+			requires.getFormat().add(getValue(type));
 		}
-		requires.getFormat().addAll(formats);
+//		requires.getFormat().addAll(formats);
 
-		debug("Required formats.");
-		for (String type : requires.getFormat())
-		{
-			debug(type);
-		}
+//		debug("Required formats.");
+//		for (String type : requires.getFormat())
+//		{
+//			debug(type);
+//		}
 
 		String encoding = combined.inputEncoding();
 		if (encoding != null && encoding.length() > 0)
@@ -442,7 +444,8 @@ public class MetadataProcessor extends AbstractProcessor implements Processor
 		// Populate the produces IOSpecification
 		IOSpecification produces = metadata.getProduces();
 		formats = makeList(combined.outputFormat());
-		produces.getFormat().addAll(formats);
+		//produces.getFormat().addAll(formats);
+		formats.forEach( format -> produces.getFormat().add(getValue(format)));
 
 		encoding = combined.outputEncoding();
 		if (encoding != null && encoding.length() > 0)
