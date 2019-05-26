@@ -3,7 +3,7 @@ branches:
   only:
   - develop
   - master
-  - releases/.*
+  - release/.*
 env:
   global:
     - secure: HfZI1W6f5zgvtFfkayzhdj1/vE3EnuGuofOpeSeVDgkeSck0/q7XrS0TNVAog1A3hslldKzBRyqbUcMeDMfgcCtxVKw5ZrCyCGiVvMBT0bOSvjMnY2bWPMUQuzKJFO/N01fA/4Y+Tt2vW6JnRIVdc/Optkh4zAc/i+FoZA+J0oU=
@@ -17,7 +17,7 @@ stages:
   - name: Unit Tests
     if: branch = develop
   - name: Staging
-    if: branch =~ ^releases
+    if: branch =~ ^release
   - name: Master
     if: branch = master
 
@@ -29,7 +29,8 @@ jobs:
     - stage: Staging
       before-install: chmod +x ./deploy.sh
       install: mvn --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true -Pstaging -B -V install
-      script: ./deploy.sh
+      script: mvn --settings settings.xml -Dmaven.javadoc.skip=true -Pstaging -B -V clean test
+      after_success: ./deploy.sh
     - stage: Master
       install: mvn --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true -B -V install
       script: mvn --settings settings.xml clean test
