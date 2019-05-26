@@ -26,7 +26,8 @@ jobs:
       -Pdevelop -B -V install
     script: mvn --settings settings.xml -Pdevelop clean test
   - stage: Staging
-    before-install: chmod +x ./deploy.sh
+    before-install:
+    - chmod +x ./deploy.sh
     install: mvn --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true
       -Pstaging -B -V install
     script: mvn --settings settings.xml -Dmaven.javadoc.skip=true -Pstaging -B -V
