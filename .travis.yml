@@ -3,6 +3,7 @@ branches:
   only:
   - develop
   - master
+  - releases/.*
 env:
   global:
     - secure: HfZI1W6f5zgvtFfkayzhdj1/vE3EnuGuofOpeSeVDgkeSck0/q7XrS0TNVAog1A3hslldKzBRyqbUcMeDMfgcCtxVKw5ZrCyCGiVvMBT0bOSvjMnY2bWPMUQuzKJFO/N01fA/4Y+Tt2vW6JnRIVdc/Optkh4zAc/i+FoZA+J0oU=
@@ -11,12 +12,24 @@ env:
     - secure: dSxn+xLVq/AM3xWvV4w7VYfHWNuGDOlipI3GwTqLlryUIL/EB6inqQQQzYK/b6V7ihpRS5hsWeDX3tFSgX6tq7mX1D3nDTznA4v/KFFziTv2QPm840eISPFWyqVUXB/fIx7+kkyaqEjy6/BqxIwTyQCgjcrM/41i/68bYsHVOgE=
     - secure: GUy10JFNYXT0xHtK3Jbdqtb8gI21AoHRGUgIi2O8xxu0r+LmG3CdONwanjQMyfOD7l8t2PIqtr49Gi0YeOmmzlFaWi4NSYnVDp1sXy/2h9nO20dqUnwU3t480l0YEiX5/iqTPHIpnpJX5M9+3cK2GY0cCqL/O9Xo5ncLBvjA83c=
     - secure: PzYTdsse1ipmjI30xaxyu5/K5nwUelDBH6JzCnZqQ4tAXAbY3E5tnlKS9G14SbqGc0Wwjjt1eGllJn6SjyARASIYue4qTfVlL5IuWdSjp63ynEEazFs9RShGHbogN3y3AekunPRkZ96Z89SDEzU0c6uqsSOMuvCTGPtmpBLHOgA=
-before_install:
-- chmod a+x ./deploy.sh
-install:
-- mvn --settings settings.xml -Prelease -DskipTests=true -Dmaven.javadoc.skip=true
-  -B -V install
-script:
-- mvn clean test --settings settings.xml -Prelease
-after_success:
-- if [ "$TRAVIS_BRANCH" == "master" ] ; then ./deploy.sh ; fi
+
+stages:
+  - name: Unit Tests
+    if: branch = develop
+  - name: Staging
+    if: branch =~ ^releases
+  - name: Master
+    if: branch = master
+
+jobs:
+  include:
+    - stage: Unit Tests
+      install: mvn --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true -Pdevelop -B -V install
+      script: mvn --settings settings.xml -Pdevelop clean test
+    - stage: Staging
+      before-install: chmod +x ./deploy.sh
+      install: mvn --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true -Pstaging -B -V install
+      script: ./deploy.sh
+    - stage: Master
+      install: mvn --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true -B -V install
+      script: mvn --settings settings.xml clean test
