@@ -27,7 +27,7 @@ jobs:
     script: mvn --settings settings.xml -Pdevelop clean test
   - stage: Staging
     install: mvn install --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true -Pstaging -B -V
-    script: mvn clean test--settings settings.xml -Dmaven.javadoc.skip=true -Pstaging -B -V
+    script: mvn clean test --settings settings.xml -Dmaven.javadoc.skip=true -Pstaging -B -V
     after_success: chmod +x deploy.sh && ./deploy.sh
   - stage: Master
     install: mvn install --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true -B -V
