@@ -26,10 +26,10 @@ public class AnnotationTests extends CompilerBase
 
 	}
 
-	@AfterClass
+//	@AfterClass
 	public static void cleanup() throws IOException
 	{
-//		delete(new File("src/main/resources/metadata"));
+		delete(new File("src/main/resources/metadata"));
 		delete(new File("Empty.class"));
 		delete(new File("Base.class"));
 		System.out.println("Cleanup complete.");
@@ -156,7 +156,7 @@ public class AnnotationTests extends CompilerBase
 		String desc = "description";
 		String source = "package test;\n" +
 				"import org.lappsgrid.annotations.ServiceMetadata;\n" +
-				"@ServiceMetadata(license=\"" + desc +"\")\n" +
+				"@ServiceMetadata(licenseDesc=\"" + desc +"\")\n" +
 				"class Empty { }\n";
 		compile(source);
 		ServiceMetadata metadata = getMetadata();
@@ -195,6 +195,24 @@ public class AnnotationTests extends CompilerBase
 
 		assertNotNull(tagsets.get(expectedKey));
 		assertEquals(expectedValue, tagsets.get(expectedKey));
+	}
+
+	@Test
+	public void shortNames() throws IOException
+	{
+		String source = read(this.getClass().getResourceAsStream("/ShortNames.java"));
+		compile(source);
+		ServiceMetadata metadata = getMetadata("src/main/resources/metadata/ShortNames.json");
+		assertNotNull(metadata);
+		List<String> list = metadata.getProduces().getFormat();
+		assertEquals(1, list.size());
+		assertEquals(Uri.GATE, list.get(0));
+
+		list = metadata.getRequires().getFormat();
+		assertEquals(2, list.size());
+		assertTrue("Requires does not contain LIF", list.contains(Uri.LIF));
+		assertTrue("Requires does not contain TXT", list.contains(Uri.TEXT));
+
 	}
 
 	public static String read(InputStream input) throws IOException {
