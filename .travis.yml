@@ -31,4 +31,4 @@ jobs:
     after_success: chmod +x deploy.sh && ./deploy.sh
   - stage: Master
     install: mvn install --settings settings.xml -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-    script: mvn --settings settings.xml clean test site
+    script: mvn --settings settings.xml clean test
